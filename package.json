@@ -10,7 +10,11 @@
   },
   "dependencies": {
     "@google/genai": "^1.41.0",
+    "@tiptap/extension-link": "^3.20.0",
+    "@tiptap/react": "^3.20.0",
+    "@tiptap/starter-kit": "^3.20.0",
     "@use-gesture/react": "^10.3.1",
+    "dompurify": "^3.3.1",
     "gsap": "^3.14.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
