@@ -1,4 +1,3 @@
-
 export interface University {
   id: string;
   name: string;
@@ -22,8 +21,9 @@ export interface Destination {
   id: string;
   name: string;
   description: string;
-  flag: string;
+  flagUrl: string;
   imageUrl: string;
+  exploreLabel: string;
 }
 
 export enum Page {
