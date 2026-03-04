@@ -25,6 +25,7 @@ export interface Destination {
   imageUrl: string;
   exploreLabel: string;
 }
+
 export interface BlogPost {
   id: number;
   title: string;
@@ -36,6 +37,7 @@ export interface BlogPost {
   author: string;
   content: string;
 }
+
 export enum Page {
   UK_HOME = 'uk-home',
   DESTINATIONS = 'destinations',
@@ -43,6 +45,4 @@ export enum Page {
   PRICING = 'pricing',
   RESULTS = 'results',
   BLOG = 'blog',
-}
-  
 }

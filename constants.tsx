@@ -1,5 +1,4 @@
-import { Course, University, Destination } from "./types";
-import { Course, University, Destination, BlogPost } from './types';
+import { Course, University, Destination, BlogPost } from "./types";
 
 export const UNIVERSITIES: University[] = [
   {
