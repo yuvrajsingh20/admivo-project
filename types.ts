@@ -1,4 +1,3 @@
-
 export interface University {
   id: string;
   name: string;
@@ -22,10 +21,21 @@ export interface Destination {
   id: string;
   name: string;
   description: string;
-  flag: string;
+  flagUrl: string;
   imageUrl: string;
+  exploreLabel: string;
 }
-
+export interface BlogPost {
+  id: number;
+  title: string;
+  subtitle: string;
+  category: string;
+  date: string;
+  imageUrl: string;
+  excerpt: string;
+  author: string;
+  content: string;
+}
 export enum Page {
   UK_HOME = 'uk-home',
   DESTINATIONS = 'destinations',
@@ -33,4 +43,6 @@ export enum Page {
   PRICING = 'pricing',
   RESULTS = 'results',
   BLOG = 'blog',
+}
+  
 }
