@@ -23,7 +23,7 @@ const DestinationsPage: React.FC<DestinationsPageProps> = ({ onBack }) => {
   }
 
   return (
-    <section className="py-24 px-6 bg-[#F0F4F8] min-h-screen">
+    <section className="py-12 px-6 bg-[#F0F4F8] min-h-screen">
       <style>{`
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(28px); }
@@ -157,15 +157,34 @@ const DestinationsPage: React.FC<DestinationsPageProps> = ({ onBack }) => {
         <div className="mt-16 text-center">
           <button
             onClick={onBack}
-            className="group inline-flex flex-col items-center gap-1.5 text-slate-400 hover:text-[#F59E0B] font-bold uppercase text-xs tracking-widest transition-colors duration-300"
+            className="group relative inline-flex items-center gap-3 bg-[#F59E0B] hover:bg-[#f5a318] text-white font-black uppercase tracking-widest text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-[0_8px_30px_rgba(245,158,11,0.5)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
           >
-            <span className="inline-flex items-center gap-2">
-              <span className="material-icons-outlined text-sm transition-transform duration-300 group-hover:-translate-x-1">
+            {/* Shimmer sweep */}
+            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+            {/* Animated arrow trail */}
+            <span className="relative flex items-center gap-0.5">
+              {/* Trail arrows — fade in staggered on hover */}
+              <span
+                className="material-icons-outlined opacity-0 -translate-x-2 group-hover:opacity-30 group-hover:translate-x-0 transition-all duration-300"
+                style={{ fontSize: "12px", transitionDelay: "120ms" }}
+              >
                 west
               </span>
-              Return to Homepage
+              <span
+                className="material-icons-outlined opacity-0 -translate-x-2 group-hover:opacity-60 group-hover:translate-x-0 transition-all duration-300"
+                style={{ fontSize: "14px", transitionDelay: "60ms" }}
+              >
+                west
+              </span>
+              {/* Lead arrow */}
+              <span
+                className="material-icons-outlined transition-transform duration-300 group-hover:-translate-x-1"
+                style={{ fontSize: "18px" }}
+              >
+                west
+              </span>
             </span>
-            <span className="block h-px w-6 bg-slate-300 group-hover:w-full group-hover:bg-[#F59E0B] transition-all duration-500 ease-out" />
+            Return to Homepage
           </button>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Course, University, Destination } from "./types";
 
 export const UNIVERSITIES: University[] = [
@@ -175,7 +176,7 @@ export interface CountryDetail {
 export const COUNTRY_DETAILS: Record<string, CountryDetail> = {
   uk: {
     bannerImage:
-      "https://images.unsplash.com/photo-1526129318478-62ed807ebdf9?q=80&w=1800&auto=format&fit=crop",
+      "https://images.pexels.com/photos/9787564/pexels-photo-9787564.jpeg",
     tagline: "World-class education. Historic campuses. Global careers.",
     overview:
       "The United Kingdom is home to some of the world's oldest and most prestigious universities. With a rich academic tradition, UK institutions offer an unparalleled environment for intellectual growth, cutting-edge research, and professional development — all in a culturally rich and diverse society.",
@@ -261,7 +262,7 @@ export const COUNTRY_DETAILS: Record<string, CountryDetail> = {
 
   usa: {
     bannerImage:
-      "https://plus.unsplash.com/premium_photo-1694475309861-c5d754d6690d?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "https://images.pexels.com/photos/3230122/pexels-photo-3230122.jpeg",
     tagline: "Ivy League excellence meets boundless innovation.",
     overview:
       "The United States is the world's top destination for international students, combining academic excellence with unmatched research funding, industry connections, and a vibrant campus culture. With over 4,000 accredited institutions, there's a perfect fit for every student.",
@@ -347,7 +348,7 @@ export const COUNTRY_DETAILS: Record<string, CountryDetail> = {
 
   germany: {
     bannerImage:
-      "https://images.unsplash.com/photo-1552035496-08efc7baf40e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fGdlcm1hbnl8ZW58MHx8MHx8fDA%3D",
+      "https://images.pexels.com/photos/772472/pexels-photo-772472.jpeg",
     tagline: "Tuition-free. Future-focused. Heart of Europe.",
     overview:
       "Germany has emerged as one of the world's most attractive study destinations, offering tuition-free education at public universities to international students. Renowned for engineering, science, and business, German institutions provide rigorous academics alongside strong industry links to global giants like BMW, Siemens, and Bosch.",
@@ -433,7 +434,7 @@ export const COUNTRY_DETAILS: Record<string, CountryDetail> = {
 
   canada: {
     bannerImage:
-      "https://images.unsplash.com/photo-1588733103629-b77afe0425ce?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2FuYWRhfGVufDB8fDB8fHww",
+      "https://images.pexels.com/photos/2827843/pexels-photo-2827843.jpeg",
     tagline: "Clear PR pathways. World-class campuses. Stunning landscapes.",
     overview:
       "Canada has rapidly grown into one of the world's most sought-after student destinations. With friendly immigration policies, high-quality education, affordable living compared to the US, and some of the most straightforward permanent residency pathways — Canada is the complete package.",
@@ -519,7 +520,7 @@ export const COUNTRY_DETAILS: Record<string, CountryDetail> = {
 
   australia: {
     bannerImage:
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=1800&auto=format&fit=crop",
+      "https://images.pexels.com/photos/1086852/pexels-photo-1086852.jpeg",
     tagline: "World-class research. Vibrant cities. Sun-soaked lifestyle.",
     overview:
       "Australia is a world-leader in education with 7 universities in the global top 100. Combining rigorous academics with an unmatched quality of life, generous post-study work rights, stunning natural beauty, and a warm, multicultural society — Australia offers the complete international student experience.",
@@ -605,7 +606,7 @@ export const COUNTRY_DETAILS: Record<string, CountryDetail> = {
 
   korea: {
     bannerImage:
-      "https://images.unsplash.com/photo-1538485399081-7191377e8241?q=80&w=1800&auto=format&fit=crop",
+      "https://images.pexels.com/photos/2848492/pexels-photo-2848492.jpeg",
     tagline: "K-culture, cutting-edge tech, and government scholarships.",
     overview:
       "South Korea has rapidly risen as a premier destination for international students, blending top academic institutions with one of the world's most dynamic tech economies. The Korean Government Scholarship (GKS) program, affordable living costs, a safe environment, and a vibrant cultural scene make Korea uniquely compelling.",
@@ -689,3 +690,62 @@ export const COUNTRY_DETAILS: Record<string, CountryDetail> = {
     ],
   },
 };
+
+// ─── Currency Conversion ────────────────────────────────────────────────
+
+const CURRENCY_CODES: Record<string, string> = {
+  uk: "GBP",
+  usa: "USD",
+  germany: "EUR",
+  canada: "CAD",
+  australia: "AUD",
+  korea: "KRW",
+};
+
+export interface CurrencyRate {
+  code: string;
+  rate: string | null;
+  loading: boolean;
+  error: boolean;
+}
+
+export function useCurrencyRate(countryId: string): CurrencyRate {
+  const code = CURRENCY_CODES[countryId] ?? null;
+
+  const [rate, setRate] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (!code) return;
+
+    setRate(null);
+    setError(false);
+    setLoading(true);
+
+    fetch(`https://api.exchangerate-api.com/v4/latest/${code}`)
+      .then((r) => {
+        if (!r.ok) throw new Error("Network response was not ok");
+        return r.json();
+      })
+      .then((json) => {
+        const inr = json?.rates?.INR;
+        if (inr != null) {
+          setRate(
+            `1 ${code} = ₹${Number(inr).toLocaleString("en-IN", {
+              maximumFractionDigits: 2,
+            })}`,
+          );
+        } else {
+          throw new Error("INR rate missing");
+        }
+      })
+      .catch(() => {
+        setError(true);
+        setRate(null);
+      })
+      .finally(() => setLoading(false));
+  }, [code]);
+
+  return { code: code ?? "", rate, loading, error };
+}
