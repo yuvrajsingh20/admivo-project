@@ -11,15 +11,15 @@ const BlogPage: React.FC = () => {
   }
 
   if (currentView === "create") {
-  if (role !== "admin") {
-    return (
-      <div className="py-24 text-center text-red-500 font-bold">
-        Access Denied
-      </div>
-    );
+    if (role !== "admin") {
+      return (
+        <div className="py-24 text-center text-red-500 font-bold">
+          Access Denied
+        </div>
+      );
+    }
+    return <BlogCreate />;
   }
-  return <BlogCreate />;
-}
 
   return (
     <section className="py-24 px-6 bg-[#F9FAFB] min-h-screen">
@@ -30,14 +30,14 @@ const BlogPage: React.FC = () => {
             Latest from our Blog
           </h2>
 
-                    {role === "admin" && (
+          {role === "admin" && (
             <button
-                onClick={() => navigateTo("create")}
-                className="mt-8 bg-black text-white px-6 py-3 rounded-xl"
+              onClick={() => navigateTo("create")}
+              className="mt-8 bg-black text-white px-6 py-3 rounded-xl"
             >
-                + Write New Article
+              + Write New Article
             </button>
-            )}
+          )}
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">

@@ -41,6 +41,16 @@ const App: React.FC = () => {
             <QuickInfo />
             <WhyChoose />
             <PopularCourses />
+            <UniversityGrid onNavigate={setCurrentPage} />
+            <PortfolioSection />
+            <FinancialPlanning />
+            <div className="bg-white py-24 px-6 md:px-12 rounded-[4rem] mx-6 my-12 shadow-sm border border-slate-100">
+              <div className="max-w-3xl mx-auto text-center mb-16">
+                <h2 className="text-4xl font-black text-[#111827] mb-6">Frequently Asked Questions</h2>
+                <p className="text-slate-500 font-medium">Everything you need to know about the visa process and admissions.</p>
+              </div>
+              <VisaAccordion />
+            </div>
           </>
         );
     }
