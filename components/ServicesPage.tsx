@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import FinancialPlanning from './FinancialPlanning';
 import VisaAccordion from './VisaAccordion';
 
@@ -6,74 +7,108 @@ const ServicesPage: React.FC = () => {
     const services = [
         {
             title: 'University Admissions',
-            desc: 'Expert guidance for Bachelors, Masters, and PhD applications in top global universities.',
-            icon: 'school',
-            features: ['SOP/LOR Editing', 'University Shortlisting', 'Application Management']
+            desc: 'Expert strategy for Bachelors, Masters, and PhD applications in the world\'s most elite institutions.',
+            icon: 'account_balance',
+            features: ['SOP/LOR Strategy', 'Elite University Matching', 'Priority Application Mgmt']
         },
         {
-            title: 'Visa Counseling',
-            desc: 'High visa success rate with end-to-end documentation support and mock interviews.',
-            icon: 'description',
-            features: ['Financial Planning', 'Mock Interviews', 'Document Verification']
+            title: 'Visa Concierge',
+            desc: 'Unmatched visa success rates with rigorous documentation support and elite mock interviews.',
+            icon: 'verified',
+            features: ['Fiscal Architecture', 'Diplomatic Interviews', 'Verified Audit']
         },
         {
-            title: 'Test Preparation',
-            desc: 'Comprehensive coaching for IELTS, TOEFL, GRE, and GMAT by certified experts.',
-            icon: 'edit_note',
-            features: ['Live Classes', 'Mock Tests', 'Personal Mentorship']
+            title: 'Prime Test Prep',
+            desc: 'Bespoke coaching for IELTS, GRE, and GMAT by world-class certified academic experts.',
+            icon: 'draw',
+            features: ['Elite Syllabus', 'Unlimited Simulation', 'Direct Mentorship']
         },
         {
-            title: 'Career Counseling',
-            desc: 'Identify your strengths and choose the right course that aligns with your career goals.',
-            icon: 'trending_up',
-            features: ['Psychometric Tests', 'Industry Insights', 'Job Market Analysis']
+            title: 'Career Architecture',
+            desc: 'Precision mapping of your academic strengths to high-impact global career trajectories.',
+            icon: 'insights',
+            features: ['Psychometric Logic', 'Market Dynamics', 'Network Access']
         }
     ];
 
     return (
-        <section className="py-24 px-6 bg-[#F9FAFB] min-h-screen">
-            <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-20">
-                    <span className="text-primary font-bold text-xs uppercase tracking-[0.3em] mb-4 block">What We Offer</span>
-                    <h2 className="text-4xl lg:text-5xl font-extrabold mb-6 text-[#111827]">Comprehensive Support</h2>
-                    <p className="text-slate-500 text-lg max-w-2xl mx-auto font-medium">
-                        From your first inquiry to your first day at university, we handle everything.
-                    </p>
+        <section className="py-20 bg-[#FAFAFA] min-h-screen">
+            <div className="container-custom">
+                <div className="text-center mb-12 max-w-2xl mx-auto">
+                    <motion.span
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase mb-4 block"
+                    >
+                        Strategic Solutions
+                    </motion.span>
+                    <motion.h2
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-4xl lg:text-5xl font-bold mb-5 text-foreground tracking-tight"
+                    >
+                        Bespoke <span className="text-muted-foreground">Expert Services.</span>
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.1 }}
+                        className="text-muted-foreground text-sm font-medium leading-relaxed"
+                    >
+                        End-to-end guidance tailored for high-achieving students targeting the global elite institutions.
+                    </motion.p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 mb-24">
+                <div className="grid md:grid-cols-2 gap-6 mb-20">
                     {services.map((service, idx) => (
-                        <div key={idx} className="bg-white p-10 rounded-[2.5rem] shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100 flex flex-col md:flex-row gap-8">
-                            <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-                                <span className="material-icons-outlined text-primary text-3xl">{service.icon}</span>
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 15 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="bg-white p-6 rounded-2xl border border-border hover:border-foreground/20 transition-all duration-300 flex flex-col lg:flex-row gap-6 shadow-sm"
+                        >
+                            <div className="w-14 h-14 bg-secondary rounded-xl flex items-center justify-center flex-shrink-0 text-foreground">
+                                <span className="material-icons-outlined text-2xl">{service.icon}</span>
                             </div>
                             <div>
-                                <h3 className="text-2xl font-bold text-[#111827] mb-4">{service.title}</h3>
-                                <p className="text-slate-500 mb-6 leading-relaxed font-medium">{service.desc}</p>
+                                <h3 className="text-xl font-bold text-foreground mb-3 tracking-tight">{service.title}</h3>
+                                <p className="text-muted-foreground mb-6 text-sm leading-relaxed font-medium">{service.desc}</p>
                                 <ul className="space-y-3">
                                     {service.features.map(f => (
-                                        <li key={f} className="flex items-center gap-2 text-sm text-slate-600 font-bold">
-                                            <span className="material-icons-outlined text-primary text-lg">check_circle</span>
+                                        <li key={f} className="flex items-center gap-3 text-[11px] text-foreground font-bold uppercase tracking-widest">
+                                            <div className="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
+                                                <span className="material-icons-outlined text-[14px]">check</span>
+                                            </div>
                                             {f}
                                         </li>
                                     ))}
                                 </ul>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
-                <div className="space-y-24">
-                    <div className="bg-white p-12 lg:p-20 rounded-[4rem] shadow-sm border border-slate-100">
+                <div className="space-y-20">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="bg-white border border-border rounded-2xl overflow-hidden shadow-sm"
+                    >
                         <FinancialPlanning />
-                    </div>
+                    </motion.div>
 
-                    <div className="bg-white p-12 lg:p-20 rounded-[4rem] shadow-sm border border-slate-100">
-                        <div className="max-w-3xl mx-auto text-center mb-16">
-                            <h2 className="text-4xl font-black text-[#111827] mb-6">Frequently Asked Questions</h2>
-                            <p className="text-slate-500 font-medium">Everything you need to know about the visa process and admissions.</p>
+                    <div className="bg-foreground text-background p-16 lg:p-20 rounded-2xl shadow-xl">
+                        <div className="max-w-xl mx-auto text-center mb-12">
+                            <span className="text-muted-foreground font-bold text-[10px] uppercase tracking-[0.2em] mb-4 block">Institutional Insights</span>
+                            <h2 className="text-3xl font-bold mb-5 tracking-tight">Clarity for <span className="text-muted-foreground">serious applicants.</span></h2>
+                            <p className="text-muted-foreground font-medium text-sm leading-relaxed">Rigorous transparency into the most complex dimensions of the international education journey.</p>
                         </div>
-                        <VisaAccordion />
+                        <div className="max-w-2xl mx-auto bg-white rounded-xl overflow-hidden text-foreground">
+                            <VisaAccordion />
+                        </div>
                     </div>
                 </div>
             </div>

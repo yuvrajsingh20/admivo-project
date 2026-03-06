@@ -43,13 +43,26 @@ const App: React.FC = () => {
             <PopularCourses />
             <UniversityGrid onNavigate={setCurrentPage} />
             <PortfolioSection />
-            <FinancialPlanning />
-            <div className="bg-white py-24 px-6 md:px-12 rounded-[4rem] mx-6 my-12 shadow-sm border border-slate-100">
-              <div className="max-w-3xl mx-auto text-center mb-16">
-                <h2 className="text-4xl font-black text-[#111827] mb-6">Frequently Asked Questions</h2>
-                <p className="text-slate-500 font-medium">Everything you need to know about the visa process and admissions.</p>
+            <div className="bg-[#FAFAFA] border-y border-border">
+              <FinancialPlanning />
+            </div>
+            <div className="py-20 bg-white">
+              <div className="container-custom">
+                <div className="text-center mb-12 max-w-2xl mx-auto">
+                  <span className="text-[12px] font-semibold tracking-[0.15em] text-[#6B7280] uppercase mb-[16px] block">
+                    Institutional Intelligence
+                  </span>
+                  <h2 className="text-[40px] font-semibold text-[#111111] mb-[20px] tracking-[-0.02em] leading-[1.2]">
+                    Strategic Insights & FAQs.
+                  </h2>
+                  <p className="text-[14px] text-[#4B5563] leading-[1.6]">
+                    Comprehensive intelligence on elite admission protocols and global academic relocation.
+                  </p>
+                </div>
+                <div className="max-w-2xl mx-auto">
+                  <VisaAccordion />
+                </div>
               </div>
-              <VisaAccordion />
             </div>
           </>
         );
@@ -57,7 +70,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background-light">
+    <div className="min-h-screen bg-white">
       <Navigation
         currentPage={currentPage}
         onNavigate={setCurrentPage}

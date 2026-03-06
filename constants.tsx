@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { Course, University, Destination, BlogPost } from "./types";
 
 export const UNIVERSITIES: University[] = [
@@ -31,6 +32,31 @@ export const UNIVERSITIES: University[] = [
     imageUrl:
       "https://images.unsplash.com/photo-1555132562-b430e704743c?q=80&w=800&auto=format&fit=crop",
   },
+];
+
+export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 1,
+    title: "How to Choose the Right University in the UK",
+    subtitle: "A comprehensive guide for international students.",
+    category: "Education",
+    date: "March 15, 2024",
+    imageUrl: "https://images.unsplash.com/photo-152305085306e-8a3d3efaf58c?q=80&w=800&auto=format&fit=crop",
+    excerpt: "Finding the perfect university can be overwhelming. We break down the key factors to consider, from rankings to campus life.",
+    author: "Admivo Team",
+    content: "<p>Choosing the right university is one of the most significant decisions you'll make in your academic journey...</p>"
+  },
+  {
+    id: 2,
+    title: "Understanding the UK Student Visa Process",
+    subtitle: "Everything you need to know about the Student Visa route.",
+    category: "Visa",
+    date: "March 10, 2024",
+    imageUrl: "https://images.unsplash.com/photo-1544650030-3c9baf62402a?q=80&w=800&auto=format&fit=crop",
+    excerpt: "The visa process doesn't have to be complicated. Our step-by-step guide helps you navigate the requirements with ease.",
+    author: "Visa Experts",
+    content: "<p>The United Kingdom offers a straightforward path for international students to study at its world-class institutions...</p>"
+  }
 ];
 
 export const COURSES: Course[] = [
@@ -161,6 +187,12 @@ export interface WhyStudyItem {
   desc: string;
 }
 
+export interface CostOfLivingItem {
+  label: string;
+  value: string;
+  icon: string;
+}
+
 export interface CountryDetail {
   bannerImage: string;
   tagline: string;
@@ -168,6 +200,7 @@ export interface CountryDetail {
   facts: CountryFact[];
   universities: CountryUniversity[];
   whyStudy: WhyStudyItem[];
+  costOfLiving?: CostOfLivingItem[];
 }
 
 // ─── Country Detail Data ─────────────────────────────────────────────────────
@@ -256,6 +289,12 @@ export const COUNTRY_DETAILS: Record<string, CountryDetail> = {
         title: "Chevening Scholarships",
         desc: "Prestigious fully-funded scholarships available for outstanding international students.",
       },
+    ],
+    costOfLiving: [
+      { label: "1-BR Central Rent", value: "£1,450", icon: "apartment" },
+      { label: "Monthly Meal Budget", value: "£400", icon: "restaurant" },
+      { label: "Student Transit", value: "£85", icon: "directions_bus" },
+      { label: "Inexpensive Meal", value: "£15", icon: "lunch_dining" },
     ],
   },
 
@@ -428,6 +467,12 @@ export const COUNTRY_DETAILS: Record<string, CountryDetail> = {
         title: "DAAD Scholarships",
         desc: "Germany's DAAD offers extensive funding opportunities for international students.",
       },
+    ],
+    costOfLiving: [
+      { label: "1-BR Central Rent", value: "€1,280", icon: "apartment" },
+      { label: "Monthly Meal Budget", value: "€350", icon: "restaurant" },
+      { label: "Student Transit", value: "€63", icon: "directions_bus" },
+      { label: "Inexpensive Meal", value: "€15", icon: "lunch_dining" },
     ],
   },
 

@@ -1,41 +1,106 @@
+import React, { useRef } from 'react';
+import { motion } from 'framer-motion';
 
-import React from 'react';
-import { COURSES } from '../constants';
+interface Course {
+  id: number;
+  title: string;
+  salary: string;
+  category: string;
+  duration: string;
+  icon: string;
+}
 
 const PopularCourses: React.FC = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const courses: Course[] = [
+    { id: 1, title: "Business Analytics", salary: "£45,000/yr", category: "STEM", duration: "1 Year PG", icon: "assessment" },
+    { id: 2, title: "Computer Science", salary: "£50,000/yr", category: "High Demand", duration: "3 Year UG", icon: "code" },
+    { id: 3, title: "Public Health", salary: "£38,000/yr", category: "NHS Careers", duration: "1 Year PG", icon: "local_hospital" },
+    { id: 4, title: "Architecture", salary: "£42,000/yr", category: "Creative", duration: "3-5 Years", icon: "architecture" },
+    { id: 5, title: "Psychology", salary: "£35,000/yr", category: "Research", duration: "3 Year UG", icon: "psychology" },
+  ];
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const scrollTo = direction === 'left' ? scrollLeft - clientWidth : scrollLeft + clientWidth;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="py-20 bg-background-light overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 flex justify-between items-end mb-10">
-        <div>
-          <h2 className="text-3xl font-bold mb-2">Most Popular Courses</h2>
-          <p className="text-slate-500">Discover programs that lead to high-demand careers</p>
-        </div>
-        <div className="flex gap-2">
-          <button className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-white transition-all">
-            <span className="material-icons-outlined">chevron_left</span>
-          </button>
-          <button className="w-10 h-10 rounded-full border border-primary/20 flex items-center justify-center hover:bg-primary hover:text-white transition-all">
-            <span className="material-icons-outlined">chevron_right</span>
-          </button>
-        </div>
-      </div>
-      <div className="flex overflow-x-auto gap-6 px-6 lg:px-[calc((100vw-1280px)/2+24px)] hide-scrollbar pb-8">
-        {COURSES.map((course) => (
-          <div key={course.id} className="flex-none w-72 bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl transition-shadow border border-slate-100">
-            <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${course.colorClass}`}>
-              <span className="material-icons-outlined">{course.icon}</span>
-            </div>
-            <h4 className="text-lg font-bold mb-2">{course.title}</h4>
-            <p className="text-xs text-slate-500 mb-4">Average Salary: {course.salary}</p>
-            <div className="flex flex-wrap gap-2">
-              {course.tags.map(tag => (
-                <span key={tag} className="px-2 py-1 bg-slate-100 rounded text-[10px] font-medium text-slate-600 uppercase tracking-tighter">
-                  {tag}
-                </span>
-              ))}
-            </div>
+    <section className="py-20 bg-white border-b border-border">
+      <div className="container-custom">
+        <div className="flex justify-between items-end mb-12">
+          <div>
+            <span className="text-[12px] font-semibold tracking-[0.15em] text-[#6B7280] uppercase mb-[16px] block">
+              Curated Programs
+            </span>
+            <h2 className="text-[40px] font-semibold text-[#111111] tracking-[-0.02em] leading-[1.2]">
+              Popular Career Paths.
+            </h2>
           </div>
-        ))}
+          <div className="flex gap-2">
+            <button
+              onClick={() => scroll('left')}
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-secondary text-foreground transition-all duration-300 active:scale-95"
+            >
+              <span className="material-icons-outlined text-sm">west</span>
+            </button>
+            <button
+              onClick={() => scroll('right')}
+              className="w-10 h-10 rounded-full border border-border flex items-center justify-center hover:bg-secondary text-foreground transition-all duration-300 active:scale-95"
+            >
+              <span className="material-icons-outlined text-sm">east</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          ref={scrollRef}
+          className="flex gap-6 overflow-x-auto pb-8 no-scrollbar scroll-smooth"
+        >
+          {courses.map((course) => (
+            <motion.div
+              key={course.id}
+              className="min-w-[300px] bg-white rounded-2xl border border-border p-5 flex flex-col group hover:border-black/10 transition-all duration-300 shadow-sm"
+            >
+              <div className="w-12 h-12 bg-secondary/50 rounded-xl flex items-center justify-center mb-6 text-[#6B7280] group-hover:text-[#111111] transition-colors duration-300">
+                <span className="material-icons-outlined text-xl">{course.icon}</span>
+              </div>
+
+              <h3 className="text-[18px] font-semibold text-[#111111] mb-3 tracking-tight duration-300">
+                {course.title}
+              </h3>
+
+              <div className="p-4 bg-secondary/30 rounded-xl border border-transparent group-hover:border-border transition-all mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <p className="text-[11px] font-bold text-foreground uppercase tracking-widest">
+                    Salary: <span className="text-muted-foreground">{course.salary}</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-2 mb-6">
+                <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-[0.15em] px-2.5 py-1 bg-secondary rounded-md border border-border/50">
+                  {course.duration}
+                </span>
+                <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-[0.15em] px-2.5 py-1 bg-secondary rounded-md border border-border/50">
+                  {course.category}
+                </span>
+              </div>
+
+              <div className="mt-auto pt-6 border-t border-border/50">
+                <button className="text-[11px] font-bold text-foreground uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">
+                  Explore Curriculum
+                  <span className="material-icons-outlined text-[14px]">arrow_forward</span>
+                </button>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

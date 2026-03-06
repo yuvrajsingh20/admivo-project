@@ -1,52 +1,59 @@
-
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const VisaAccordion: React.FC = () => {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
 
   const sections = [
     {
-      title: 'Student Visa (Tier 4) Process',
-      content: 'Applications usually open 6 months before your course starts. You\'ll need a CAS (Confirmation of Acceptance for Studies), proof of finances, and a valid passport. Our experts handle the complex documentation for you.'
+      title: 'Global Student Visa Protocols',
+      content: 'Visa applications typically commence 6 months prior to your program start date. Essential requirements include a valid admission offer (CAS/I-20), financial solvency proof, and current travel documents. Our specialists ensure your documentation meets the highest standards for approval.'
     },
     {
-      title: 'Language Proficiency Requirements',
-      content: 'Most UK universities require IELTS Academic scores between 6.0 and 7.5. Some institutions accept alternative tests like TOEFL or Pearson PTE. We provide free training for students who need to improve their scores.'
+      title: 'Linguistic Competency Standards',
+      content: 'Top-tier institutions generally require IELTS Academic scores ranging from 6.5 to 8.0, or equivalent TOEFL/PTE certifications. We offer dedicated language refinement programs to ensure you meet and exceed these academic benchmarks.'
     },
     {
-      title: 'Health Insurance (IHS)',
-      content: 'International students must pay the Immigration Health Surcharge as part of their visa application. This grants you access to the UK\'s National Health Service (NHS) during your stay.'
+      title: 'Global Health Coverage (IHS)',
+      content: 'Most international study destinations require mandatory health insurance coverage as part of the visa protocol. This ensures comprehensive access to host country medical services throughout the duration of your academic program.'
     }
   ];
 
   return (
-    <section className="py-24 px-6 bg-white">
-      <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12 text-center text-slate-900">Visa & Admission Requirements</h2>
+    <div className="container-custom">
+      <div className="max-w-2xl mx-auto py-12">
         <div className="space-y-4">
           {sections.map((section, idx) => (
-            <div key={idx} className="border border-slate-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
-              <button 
+            <div key={idx} className="border border-border rounded-xl overflow-hidden bg-white">
+              <button
                 onClick={() => setOpenIdx(openIdx === idx ? null : idx)}
-                className="w-full flex items-center justify-between p-7 bg-white text-left font-bold group"
+                className="w-full flex items-center justify-between p-5 text-left transition-colors hover:bg-black/[0.02]"
               >
-                <span className="text-slate-800 text-lg">{section.title}</span>
-                <span className={`material-icons-outlined text-primary transition-transform duration-300 ${openIdx === idx ? 'rotate-180' : ''}`}>
+                <span className="text-[#111111] text-[14px] font-semibold tracking-tight">{section.title}</span>
+                <span className={`material-icons-outlined text-[#6B7280] text-lg transition-transform duration-300 ${openIdx === idx ? 'rotate-180' : ''}`}>
                   expand_more
                 </span>
               </button>
-              <div 
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${openIdx === idx ? 'max-h-60' : 'max-h-0'}`}
-              >
-                <div className="p-7 pt-0 text-slate-500 text-base leading-relaxed border-t border-slate-50">
-                  {section.content}
-                </div>
-              </div>
+              <AnimatePresence>
+                {openIdx === idx && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="p-5 pt-0 text-[#4B5563] text-[14px] leading-[1.6] font-normal bg-white">
+                      {section.content}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

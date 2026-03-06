@@ -15,7 +15,7 @@ const RichTextEditor: React.FC<Props> = ({ value, onChange }) => {
       Link.configure({
         openOnClick: true,
         HTMLAttributes: {
-          class: "text-blue-600 underline font-semibold"
+          class: "text-foreground underline font-bold"
         }
       })
     ],
@@ -40,41 +40,42 @@ const RichTextEditor: React.FC<Props> = ({ value, onChange }) => {
   };
 
   return (
-    <div className="border rounded-xl p-4 bg-white">
-
+    <div className="bg-white min-h-[300px] flex flex-col">
       {/* Toolbar */}
-      <div className="flex gap-3 mb-4 flex-wrap">
+      <div className="flex gap-1 p-2 border-b border-border bg-secondary/30 flex-wrap">
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
-          className="px-3 py-1 border rounded"
+          className={`h-8 px-3 rounded text-[10px] font-bold uppercase tracking-widest transition-colors ${editor.isActive('bold') ? 'bg-foreground text-background' : 'hover:bg-secondary text-foreground'}`}
         >
           Bold
         </button>
 
         <button
           onClick={() => editor.chain().focus().toggleItalic().run()}
-          className="px-3 py-1 border rounded"
+          className={`h-8 px-3 rounded text-[10px] font-bold uppercase tracking-widest transition-colors ${editor.isActive('italic') ? 'bg-foreground text-background' : 'hover:bg-secondary text-foreground'}`}
         >
           Italic
         </button>
 
         <button
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className="px-3 py-1 border rounded"
+          className={`h-8 px-3 rounded text-[10px] font-bold uppercase tracking-widest transition-colors ${editor.isActive('bulletList') ? 'bg-foreground text-background' : 'hover:bg-secondary text-foreground'}`}
         >
-          Bullet List
+          List
         </button>
 
         <button
           onClick={setLink}
-          className="px-3 py-1 border rounded"
+          className={`h-8 px-3 rounded text-[10px] font-bold uppercase tracking-widest hover:bg-secondary text-foreground transition-colors ${editor.isActive('link') ? 'text-blue-500' : ''}`}
         >
-          Add Link
+          Link
         </button>
       </div>
 
       {/* Editor */}
-      <EditorContent editor={editor} className="min-h-[200px] focus:outline-none" />
+      <div className="flex-grow p-6">
+        <EditorContent editor={editor} className="prose prose-sm max-w-none focus:outline-none min-h-[250px]" />
+      </div>
     </div>
   );
 };

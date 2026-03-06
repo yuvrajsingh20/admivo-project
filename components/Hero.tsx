@@ -1,7 +1,7 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Page } from '../types';
 import TextType from './animations/TextType';
-import HeroScene from "./three/HeroScene";
 
 interface HeroProps {
   onNavigate: (page: Page) => void;
@@ -9,28 +9,38 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
-    <header className="relative bg-white pt-12 pb-24 px-6 overflow-hidden">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-        
+    <header className="relative bg-[#FAFAFA] pt-40 pb-20 px-6 overflow-hidden min-h-[90vh] flex items-center border-b border-border">
+      {/* Background Subtle Gradient */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-primary/10 to-transparent -z-10" />
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -z-10" />
+
+      <div className="container-custom grid lg:grid-cols-2 gap-12 items-center">
+
         {/* LEFT SIDE */}
-        <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 py-1.5 px-3 rounded-full bg-orange-50 border border-orange-100 mb-8">
-            <span className="text-[10px] font-bold text-orange-500 uppercase tracking-widest">
-              Study Abroad 2025
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative z-10"
+        >
+          <div className="inline-flex items-center gap-2 py-1.5 px-3 rounded-full bg-white border border-border mb-8 shadow-sm">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="text-[12px] font-semibold text-[#6B7280] tracking-[0.15em] uppercase">
+              Admissions 2026/27 Now Open
             </span>
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-extrabold text-[#111827] leading-[1.1] mb-8">
-            Your Global Education <br />
-            <span className="relative text-primary">
+          <h1 className="text-[40px] md:text-[56px] lg:text-[72px] font-semibold text-[#111111] leading-[1.1] mb-6 tracking-[-0.02em]">
+            Elevate your <br />
+            <span className="text-[#3ca2fa]">
               <TextType
                 text={[
-                  "Journey Starts Here",
-                  "Dream Big. Study Global.",
-                  "Your Future Begins Today",
+                  "Global Future",
+                  "Academic Rank",
+                  "Career Path",
                 ]}
                 typingSpeed={70}
-                pauseDuration={1500}
+                pauseDuration={2000}
                 showCursor
                 cursorCharacter="|"
                 deletingSpeed={40}
@@ -38,99 +48,97 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             </span>
           </h1>
 
-          <p className="text-lg text-slate-500 mb-10 max-w-lg leading-relaxed font-medium">
-            Expert guidance for Bachelors, Masters, and PhD admissions in top universities across USA, UK, Canada, and Europe. Join 500+ successful students.
+          <p className="text-[16px] text-[#4B5563] mb-8 max-w-lg leading-[1.6]">
+            Strategic application support for students targeting elite universities globally.
+            From Oxford to MIT, we guide your journey to excellence.
           </p>
 
           <div className="flex flex-wrap gap-4 mb-12">
-            <button className="bg-primary text-slate-900 px-8 py-4 rounded-2xl font-bold hover:scale-[1.03] transition-transform shadow-xl shadow-primary/20">
-              Book Free Counseling
+            <button
+              className="btn btn-primary h-12 px-8 text-sm tracking-wide"
+            >
+              Free Consultation
             </button>
 
             <button
-              onClick={() => onNavigate(Page.DESTINATIONS)}
-              className="bg-white border border-slate-200 text-slate-700 px-8 py-4 rounded-2xl font-bold hover:bg-slate-50 transition-all flex items-center gap-2"
+              disabled
+              className="btn btn-outline h-12 px-8 text-sm tracking-wide flex items-center gap-2 text-muted-foreground cursor-not-allowed opacity-60"
             >
-              <span className="material-icons-outlined text-xl">language</span>
-              Explore Destinations
+              Explore Hubs
+              <span className="text-[10px] bg-secondary px-1.5 py-0.5 rounded">P2</span>
             </button>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-6 mt-8 border-t border-border/50 pt-8 max-w-md">
             <div className="flex -space-x-3">
-              {[1, 2, 3].map(i => (
+              {[1, 2, 3, 4].map(i => (
                 <img
                   key={i}
-                  src={`https://i.pravatar.cc/150?u=${i + 10}`}
-                  className="w-10 h-10 rounded-full border-2 border-white object-cover"
+                  src={`https://i.pravatar.cc/150?u=${i + 20}`}
+                  className="w-10 h-10 rounded-full border-2 border-white object-cover shadow-sm"
                   alt="Student"
                 />
               ))}
             </div>
-            <p className="text-sm font-semibold text-slate-500">
-              Trusted by <span className="text-slate-900 font-bold">2,000+</span> students
+            <p className="text-[13px] text-[#6B7280]">
+              <span className="text-[#111111] font-semibold block text-[14px]">500+ Offers Received</span>
+              Elite Global University Admissions
             </p>
           </div>
-        </div>
+        </motion.div>
 
-        {/* RIGHT SIDE — PREMIUM 3D GRAPHIC */}
-<div className="relative flex justify-center lg:justify-end">
-  <div className="relative w-full h-full  ">
+        {/* RIGHT SIDE — MINIMALIST VISUAL */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="relative flex justify-center lg:justify-end"
+        >
+          <div className="relative w-full aspect-square max-w-[500px] flex items-center justify-center">
 
-    {/* Soft Gradient Glow Background */}
-    <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-orange-200/20 to-transparent rounded-full blur-3xl opacity-60 scale-150"></div>
+            {/* Minimalist Abstract Anchor */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div className="w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
+              <div className="absolute w-80 h-80 border border-primary/10 rounded-full animate-[spin_20s_linear_infinite]" />
+              <div className="absolute w-[400px] h-[400px] border border-primary/[0.05] rounded-full animate-[spin_30s_linear_infinite_reverse]" />
+            </div>
 
-    {/* 3D Canvas */}
-    
-    <div className="relative w-full h-[520px]">
-  <HeroScene />
-</div>
+            {/* Refined Premium Cards */}
+            <motion.div
+              animate={{ y: [0, -15, 0] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/4 -right-4 card-minimal !p-5 flex items-center gap-4 backdrop-blur-md bg-white/90 z-20 shadow-xl border-primary/10"
+            >
+              <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600">
+                <span className="material-icons-outlined text-lg">verified</span>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">Visa Success</p>
+                <p className="text-lg font-bold text-foreground">99.8% Rate</p>
+              </div>
+            </motion.div>
 
-    {/* Fine Doodle 1 - Curved Line */}
-    <svg
-      className="absolute top-10 left-0 w-24 opacity-40 animate-pulse"
-      viewBox="0 0 200 200"
-    >
-      <path
-        d="M10 100 Q100 10 190 100"
-        stroke="#f97316"
-        strokeWidth="4"
-        fill="none"
-        strokeLinecap="round"
-      />
-    </svg>
+            <motion.div
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+              className="absolute bottom-1/4 -left-4 card-minimal !p-5 flex items-center gap-4 backdrop-blur-md bg-white/90 z-20 shadow-xl border-primary/10"
+            >
+              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+                <span className="material-icons-outlined text-lg">stars</span>
+              </div>
+              <div>
+                <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground mb-1">Scholarships</p>
+                <p className="text-lg font-bold text-foreground">$2.4M Awarded</p>
+              </div>
+            </motion.div>
 
-    {/* Fine Doodle 2 - Circle Accent */}
-    <svg
-      className="absolute bottom-16 right-8 w-20 opacity-40 animate-bounce"
-      viewBox="0 0 200 200"
-    >
-      <circle
-        cx="100"
-        cy="100"
-        r="40"
-        stroke="#2563eb"
-        strokeWidth="4"
-        fill="none"
-      />
-    </svg>
+            {/* Subtle Center Element */}
+            <div className="w-24 h-24 rounded-3xl bg-white border border-border shadow-inner flex items-center justify-center z-10 transition-colors hover:border-primary/30">
+              <span className="material-icons-outlined text-3xl text-primary opacity-40">language</span>
+            </div>
 
-    {/* Glass Card 1 */}
-    <div className="absolute top-8 right-0 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50 transition-all hover:scale-105">
-      <p className="text-sm font-bold text-slate-800">
-        🌍 120+ Universities
-      </p>
-    </div>
-
-    {/* Glass Card 2 */}
-    <div className="absolute bottom-10 left-0 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/50 transition-all hover:scale-105">
-      <p className="text-sm font-bold text-slate-800">
-        ✈️ 2,000+ Students Abroad
-      </p>
-    </div>
-
-  </div>
-</div>
+          </div>
+        </motion.div>
       </div>
     </header>
   );

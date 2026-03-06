@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { DESTINATIONS } from "../constants";
 import CountryDetailPage from "./CountryDetailPage";
 
@@ -22,171 +23,114 @@ const DestinationsPage: React.FC<DestinationsPageProps> = ({ onBack }) => {
     );
   }
 
-  return (
-    <section className="py-12 px-6 bg-[#F0F4F8] min-h-screen">
-      <style>{`
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(28px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to   { opacity: 1; }
-        }
-        .dest-title {
-          animation: fadeUp 0.65s cubic-bezier(.22,1,.36,1) both;
-        }
-        .dest-subtitle {
-          animation: fadeUp 0.65s 0.12s cubic-bezier(.22,1,.36,1) both;
-        }
-        .dest-card {
-          animation: fadeUp 0.65s cubic-bezier(.22,1,.36,1) both;
-          opacity: 0;
-        }
-        .dest-card:nth-child(1) { animation-delay: 0.10s; }
-        .dest-card:nth-child(2) { animation-delay: 0.18s; }
-        .dest-card:nth-child(3) { animation-delay: 0.26s; }
-        .dest-card:nth-child(4) { animation-delay: 0.34s; }
-        .dest-card:nth-child(5) { animation-delay: 0.42s; }
-        .dest-card:nth-child(6) { animation-delay: 0.50s; }
-        .dest-card-inner {
-          transition: box-shadow 0.4s cubic-bezier(.22,1,.36,1), transform 0.4s cubic-bezier(.22,1,.36,1);
-        }
-        .dest-card:hover .dest-card-inner {
-          box-shadow: 0 20px 50px -10px rgba(0,0,0,0.14);
-          transform: translateY(-5px);
-        }
-        .dest-card-img {
-          transition: transform 0.7s cubic-bezier(.22,1,.36,1), filter 0.5s ease;
-        }
-        .dest-card:hover .dest-card-img {
-          transform: scale(1.07);
-          filter: brightness(1.04) saturate(1.08);
-        }
-        .dest-explore-btn {
-          position: relative;
-          display: inline-block;
-          padding-bottom: 3px;
-          transition: color 0.2s ease;
-        }
-        .dest-explore-btn::after {
-          content: '';
-          position: absolute;
-          bottom: 0; left: 0;
-          width: 100%; height: 2px;
-          background: #F59E0B;
-          border-radius: 2px;
-        }
-        .dest-explore-btn:hover {
-          color: #D97706;
-        }
-        .dest-back-btn {
-          animation: fadeIn 0.7s 0.6s both;
-          transition: color 0.2s;
-        }
-        .dest-back-btn:hover {
-          color: #D97706;
-        }
-      `}</style>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
 
-      <div className="max-w-6xl mx-auto">
+  const itemVariants = {
+    hidden: { y: 10, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+    },
+  };
+
+  return (
+    <section className="py-20 bg-white min-h-screen">
+      <div className="container-custom">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="dest-title text-4xl lg:text-5xl font-extrabold mb-4 text-[#111827] tracking-tight">
-            Top Study Destinations
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-12 max-w-2xl mx-auto"
+        >
+          <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase mb-4 block">Global Opportunities</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-5 text-foreground tracking-tight">
+            Curated Study <span className="text-muted-foreground">Destinations.</span>
           </h2>
-          <p className="dest-subtitle text-[#6B7280] text-base max-w-xl mx-auto font-medium">
-            Explore opportunities in the world's leading educational hubs.
+          <p className="text-muted-foreground text-sm font-medium leading-relaxed">
+            Strategic access to the world's most prestigious academic environments, tailored for your long-term success.
           </p>
-        </div>
+        </motion.div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 cursor-pointer">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
           {DESTINATIONS.map((dest) => (
-            <div
+            <motion.div
               key={dest.id}
-              className="dest-card group"
-              onClick={() =>
-                setSelectedCountry({ id: dest.id, name: dest.name })
-              }
+              variants={itemVariants}
+              onClick={() => setSelectedCountry({ id: dest.id, name: dest.name })}
+              className="group cursor-pointer"
             >
-              <div
-                className="dest-card-inner bg-white rounded-2xl overflow-hidden border border-slate-100"
-                style={{ boxShadow: "0 2px 12px 0 rgba(0,0,0,0.06)" }}
-              >
-                {/* Image */}
-                <div className="relative h-52 overflow-hidden bg-[#E8F0FE]">
+              <div className="bg-white rounded-xl border border-border overflow-hidden transition-all duration-300 group-hover:border-foreground/20 shadow-sm hover:shadow-md">
+                {/* Image Container */}
+                <div className="relative h-60 overflow-hidden">
                   <img
                     src={dest.imageUrl}
                     alt={dest.name}
-                    className="dest-card-img w-full h-full object-cover object-center"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/10 pointer-events-none" />
-                </div>
 
-                {/* Content */}
-                <div className="px-6 pt-5 pb-6">
-                  {/* Flag image + Name */}
-                  <div className="flex items-center gap-3 mb-3">
+                  {/* Flag Chip */}
+                  <div className="absolute top-4 left-4 px-2.5 py-1 rounded-md bg-white border border-border shadow-sm flex items-center gap-2">
                     <img
                       src={dest.flagUrl}
                       alt={`${dest.name} flag`}
-                      className="w-8 h-8 rounded-full object-cover border border-slate-200 shadow-sm flex-shrink-0"
+                      className="w-4 h-4 rounded-full object-cover"
                     />
-                    <h3 className="text-[17px] font-bold text-[#111827] tracking-tight">
-                      {dest.name}
-                    </h3>
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-foreground">
+                      Hub Active
+                    </span>
                   </div>
+                </div>
 
-                  {/* Description */}
-                  <p className="text-[#6B7280] text-sm leading-relaxed mb-5 font-medium min-h-[40px]">
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-foreground mb-3 tracking-tight group-hover:text-muted-foreground transition-colors duration-300">
+                    {dest.name}
+                  </h3>
+                  <p className="text-muted-foreground text-[13px] leading-relaxed mb-6 line-clamp-2 font-medium">
                     {dest.description}
                   </p>
 
-                  {/* CTA */}
-                  <button className="dest-explore-btn text-[#111827] font-bold text-sm tracking-tight">
-                    {dest.exploreLabel}
-                  </button>
+                  <div className="flex items-center justify-between mt-auto pt-6 border-t border-border">
+                    <span className="text-foreground font-bold text-[11px] uppercase tracking-widest flex items-center gap-2">
+                      {dest.exploreLabel}
+                      <span className="material-icons-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Back */}
-        <div className="mt-16 text-center">
+        {/* Back Button */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-16 text-center border-t border-border pt-8"
+        >
           <button
             onClick={onBack}
-            className="group relative inline-flex items-center gap-3 bg-[#F59E0B] hover:bg-[#f5a318] text-white font-black uppercase tracking-widest text-sm px-10 py-4 rounded-full shadow-lg hover:shadow-[0_8px_30px_rgba(245,158,11,0.5)] hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+            className="btn btn-outline h-11 px-6 text-xs uppercase tracking-widest flex items-center gap-2 mx-auto"
           >
-            {/* Shimmer sweep */}
-            <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
-            {/* Animated arrow trail */}
-            <span className="relative flex items-center gap-0.5">
-              {/* Trail arrows — fade in staggered on hover */}
-              <span
-                className="material-icons-outlined opacity-0 -translate-x-2 group-hover:opacity-30 group-hover:translate-x-0 transition-all duration-300"
-                style={{ fontSize: "12px", transitionDelay: "120ms" }}
-              >
-                west
-              </span>
-              <span
-                className="material-icons-outlined opacity-0 -translate-x-2 group-hover:opacity-60 group-hover:translate-x-0 transition-all duration-300"
-                style={{ fontSize: "14px", transitionDelay: "60ms" }}
-              >
-                west
-              </span>
-              {/* Lead arrow */}
-              <span
-                className="material-icons-outlined transition-transform duration-300 group-hover:-translate-x-1"
-                style={{ fontSize: "18px" }}
-              >
-                west
-              </span>
-            </span>
-            Return to Homepage
+            <span className="material-icons-outlined text-sm">west</span>
+            Return to Home
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
