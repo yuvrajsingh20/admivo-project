@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { COUNTRY_DETAILS, DESTINATIONS } from "../constants";
+import { COUNTRY_DETAILS, DESTINATIONS, useCurrencyRate } from "../constants";
 
 interface CountryDetailPageProps {
   countryId: string;
@@ -15,6 +15,11 @@ const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
   const data = COUNTRY_DETAILS[countryId];
   const destination = DESTINATIONS.find((d) => d.id === countryId);
   const heroRef = useRef<HTMLDivElement>(null);
+  const {
+    rate: conversionRate,
+    loading: rateLoading,
+    error: rateError,
+  } = useCurrencyRate(countryId);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -43,7 +48,7 @@ const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
       {/* ── Hero Banner ─────────────────────────────────────────────────── */}
       <div
         ref={heroRef}
-        className="relative h-screen min-h-[600px] max-h-[800px] overflow-hidden"
+        className="relative h-[50vh] min-h-[600px] max-h-[800px] overflow-hidden"
       >
         {/* Floating back button */}
         <button
@@ -106,6 +111,34 @@ const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
                 </span>
               </div>
             ))}
+
+            {/* ── Live Exchange Rate ── */}
+            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2">
+              <span className="material-icons-outlined text-[#F59E0B] text-sm">
+                currency_exchange
+              </span>
+              {rateLoading ? (
+                <span className="text-white text-xs font-semibold">
+                  Live Rate:{" "}
+                  <span className="text-white/50 font-normal inline-flex items-center gap-1">
+                    <span className="w-2.5 h-2.5 border border-white/30 border-t-white/80 rounded-full animate-spin inline-block" />
+                    Fetching…
+                  </span>
+                </span>
+              ) : rateError ? (
+                <span className="text-white text-xs font-semibold">
+                  Live Rate:{" "}
+                  <span className="text-white/50 font-normal">Unavailable</span>
+                </span>
+              ) : (
+                <span className="text-white text-xs font-semibold">
+                  Live Rate:{" "}
+                  <span className="text-[#F59E0B] font-bold">
+                    {conversionRate}
+                  </span>
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -119,7 +152,7 @@ const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
               {data.facts.map((fact, i) => (
                 <div
                   key={i}
-                  className="flex flex-col items-center justify-center gap-2 py-6 px-4 text-center hover:bg-amber-50/50 transition-colors"
+                  className="flex flex-col items-center justify-center gap-2 py-6 px-4 text-center hover:bg-amber-50/50 transition-colors cursor-pointer"
                 >
                   <span className="material-icons-outlined text-[#F59E0B] text-2xl">
                     {fact.icon}
@@ -293,12 +326,6 @@ const CountryDetailPage: React.FC<CountryDetailPageProps> = ({
             <div className="relative flex flex-col sm:flex-row items-center gap-3 flex-shrink-0">
               <button className="bg-[#F59E0B] hover:bg-[#D97706] text-white font-bold text-sm py-3 px-6 rounded-xl transition-colors whitespace-nowrap">
                 Book Free Consultation
-              </button>
-              <button
-                onClick={onBack}
-                className="text-slate-400 hover:text-white text-sm font-semibold transition-colors whitespace-nowrap"
-              >
-                ← All Destinations
               </button>
             </div>
           </div>
