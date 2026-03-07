@@ -9,9 +9,9 @@ const QuickInfo: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-white border-b border-border">
+    <section className="py-20 bg-white border-b border-border max-md:py-16 max-sm:py-12">
       <div className="container-custom">
-        <div className="grid md:grid-cols-3 gap-12 lg:gap-24">
+        <div className="grid md:grid-cols-3 gap-12 lg:gap-24 max-sm:gap-8">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
@@ -28,10 +28,10 @@ const QuickInfo: React.FC = () => {
                 <span className="text-[12px] font-semibold tracking-[0.15em] text-[#6B7280] uppercase block">{stat.label}</span>
               </div>
               <div className="space-y-2">
-                <h3 className="text-[40px] font-semibold text-[#111111] leading-[1.2] tabular-nums">
+                <h3 className="text-[40px] font-semibold text-[#111111] leading-[1.2] tabular-nums max-sm:text-[32px]">
                   {stat.value}
                 </h3>
-                <p className="text-[14px] text-[#4B5563] leading-[1.6]">{stat.sub}</p>
+                <p className="text-[14px] text-[#4B5563] leading-[1.6] max-sm:text-[13px]">{stat.sub}</p>
               </div>
             </motion.div>
           ))}

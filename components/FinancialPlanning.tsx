@@ -17,16 +17,16 @@ const FinancialPlanning: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white max-md:py-16 max-sm:py-12">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
+        <div className="grid lg:grid-cols-12 gap-12 items-start max-md:gap-8 max-sm:gap-6">
 
           {/* Content Pillar */}
           <div className="lg:col-span-5">
             <span className="text-[12px] font-semibold tracking-[0.15em] text-[#6B7280] uppercase mb-[16px] block">
               Financial Intelligence
             </span>
-            <h2 className="text-[40px] font-semibold mb-[20px] text-[#111111] tracking-[-0.02em] leading-[1.2]">
+            <h2 className="text-[40px] font-semibold mb-[20px] text-[#111111] tracking-[-0.02em] leading-[1.2] max-sm:text-[32px] max-sm:mb-4">
               Smart Budgeting.
             </h2>
             <p className="text-[#4B5563] mb-10 text-[14px] leading-[1.6]">
@@ -56,7 +56,7 @@ const FinancialPlanning: React.FC = () => {
 
           {/* Assessment Engine */}
           <div className="lg:col-span-7">
-            <div className="p-10 bg-white border border-border rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
+            <div className="p-10 bg-white border border-border rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden max-sm:p-6">
               <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/50 rounded-bl-full -mr-12 -mt-12 opacity-50"></div>
 
               <div className="relative z-10">
@@ -67,7 +67,7 @@ const FinancialPlanning: React.FC = () => {
                   <h3 className="text-[18px] font-semibold text-[#111111] tracking-tight">Institutional Scholarship Engine</h3>
                 </div>
 
-                <form className="space-y-6" onSubmit={handleCheck}>
+                <form className="space-y-6 max-sm:space-y-4" onSubmit={handleCheck}>
                   <div className="space-y-2">
                     <label className="text-[11px] font-semibold text-[#6B7280] uppercase tracking-wider px-1">Target Program Level</label>
                     <select
@@ -81,7 +81,7 @@ const FinancialPlanning: React.FC = () => {
                     </select>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-6 max-sm:grid-cols-1 max-sm:gap-4">
                     <div className="space-y-2">
                       <label className="text-[11px] font-semibold text-[#6B7280] uppercase tracking-wider px-1">Academic Score (%)</label>
                       <input

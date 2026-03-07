@@ -11,15 +11,15 @@ const ResultsPage: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 bg-[#FAFAFA] min-h-screen">
+        <section className="py-20 bg-[#FAFAFA] min-h-screen max-md:py-16 max-sm:py-12">
             <div className="container-custom">
-                <div className="text-center mb-12 max-w-2xl mx-auto">
+                <div className="text-center mb-12 max-w-2xl mx-auto max-sm:mb-8 max-sm:text-left">
                     <span className="text-[10px] font-bold tracking-[0.2em] text-muted-foreground uppercase mb-4 block">Proven Track Record</span>
-                    <h2 className="text-3xl lg:text-4xl font-bold mb-5 text-foreground tracking-tight">Our Impact in <span className="text-muted-foreground">Numbers.</span></h2>
+                    <h2 className="text-3xl lg:text-4xl font-bold mb-5 text-foreground tracking-tight max-sm:text-2xl max-sm:mb-3">Our Impact in <span className="text-muted-foreground">Numbers.</span></h2>
                     <p className="text-muted-foreground text-sm font-medium leading-relaxed">Quantifiable success stories that define our commitment to excellence.</p>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 max-sm:gap-4 max-sm:mb-8">
                     {stats.map((stat, idx) => (
                         <motion.div
                             key={idx}
@@ -40,9 +40,9 @@ const ResultsPage: React.FC = () => {
 
                 <PortfolioSection />
 
-                <div className="bg-foreground text-background rounded-2xl p-16 lg:p-20 mt-20 relative overflow-hidden text-center shadow-xl">
+                <div className="bg-foreground text-background rounded-2xl p-16 lg:p-20 mt-20 relative overflow-hidden text-center shadow-xl max-md:p-12 max-sm:p-6 max-sm:mt-12">
                     <div className="relative z-10 max-w-2xl mx-auto">
-                        <h3 className="text-3xl lg:text-4xl font-bold text-background mb-5 tracking-tight">Ready to be our next <br /><span className="text-muted-foreground">global success story?</span></h3>
+                        <h3 className="text-3xl lg:text-4xl font-bold text-background mb-5 tracking-tight max-sm:text-2xl max-sm:mb-3">Ready to be our next <br /><span className="text-muted-foreground">global success story?</span></h3>
                         <p className="text-muted-foreground text-sm mb-6 font-medium">Start your strategic journey today and let us guide you to your dream institution.</p>
                         <button className="btn btn-secondary h-12 px-10 text-xs tracking-widest uppercase">
                             Begin Application

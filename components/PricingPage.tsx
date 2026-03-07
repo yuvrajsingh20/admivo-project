@@ -25,9 +25,9 @@ const PricingPage: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 bg-white min-h-screen">
+        <section className="py-20 bg-white min-h-screen max-md:py-16 max-sm:py-12">
             <div className="container-custom">
-                <div className="text-center mb-12 max-w-2xl mx-auto">
+                <div className="text-center mb-12 max-w-2xl mx-auto max-sm:mb-8 max-sm:text-left">
                     <motion.span
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
@@ -38,7 +38,7 @@ const PricingPage: React.FC = () => {
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl lg:text-5xl font-bold mb-5 text-foreground tracking-tight"
+                        className="text-4xl lg:text-5xl font-bold mb-5 text-foreground tracking-tight max-sm:text-3xl max-sm:mb-3"
                     >
                         Invest in your <span className="text-muted-foreground">Legacy.</span>
                     </motion.h2>
@@ -52,7 +52,7 @@ const PricingPage: React.FC = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid lg:grid-cols-3 gap-6">
+                <div className="grid lg:grid-cols-3 gap-6 max-md:grid-cols-1 max-md:gap-8 max-md:max-w-md max-md:mx-auto">
                     {plans.map((plan, idx) => (
                         <motion.div
                             key={idx}
@@ -60,7 +60,7 @@ const PricingPage: React.FC = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className={`relative p-6 rounded-2xl flex flex-col transition-all duration-300 border ${plan.popular ? 'border-foreground bg-foreground text-background shadow-xl scale-105 z-10' : 'bg-white border-border text-foreground hover:border-foreground/20 shadow-sm'}`}
+                            className={`relative p-6 rounded-2xl flex flex-col transition-all duration-300 border ${plan.popular ? 'border-foreground bg-foreground text-background shadow-xl scale-105 z-10 max-md:scale-100' : 'bg-white border-border text-foreground hover:border-foreground/20 shadow-sm'}`}
                         >
                             {plan.popular && (
                                 <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-foreground text-background border border-border px-4 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest">Recommended</span>
@@ -68,8 +68,8 @@ const PricingPage: React.FC = () => {
                             <h3 className={`text-xl font-bold mb-3 tracking-tight ${plan.popular ? 'text-background' : 'text-foreground'}`}>{plan.name}</h3>
                             <p className={`${plan.popular ? 'text-muted-foreground' : 'text-muted-foreground'} text-xs font-medium mb-6`}>{plan.desc}</p>
 
-                            <div className="flex items-baseline gap-2 mb-8">
-                                <span className="text-3xl font-bold tracking-tight">{plan.price}</span>
+                            <div className="flex items-baseline gap-2 mb-8 max-sm:mb-6">
+                                <span className="text-3xl font-bold tracking-tight max-sm:text-2xl">{plan.price}</span>
                             </div>
 
                             <ul className="space-y-4 mb-8 flex-grow">

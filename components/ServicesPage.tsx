@@ -32,9 +32,9 @@ const ServicesPage: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 bg-[#FAFAFA] min-h-screen">
+        <section className="py-20 bg-[#FAFAFA] min-h-screen max-md:py-16 max-sm:py-12">
             <div className="container-custom">
-                <div className="text-center mb-12 max-w-2xl mx-auto">
+                <div className="text-center mb-12 max-w-2xl mx-auto max-sm:mb-8 max-sm:text-left">
                     <motion.span
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
@@ -45,7 +45,7 @@ const ServicesPage: React.FC = () => {
                     <motion.h2
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="text-4xl lg:text-5xl font-bold mb-5 text-foreground tracking-tight"
+                        className="text-4xl lg:text-5xl font-bold mb-5 text-foreground tracking-tight max-sm:text-3xl max-sm:mb-3"
                     >
                         Bespoke <span className="text-muted-foreground">Expert Services.</span>
                     </motion.h2>
@@ -59,7 +59,7 @@ const ServicesPage: React.FC = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6 mb-20">
+                <div className="grid md:grid-cols-2 gap-6 mb-20 max-sm:grid-cols-1 max-sm:gap-4 max-sm:mb-12">
                     {services.map((service, idx) => (
                         <motion.div
                             key={idx}
@@ -67,7 +67,7 @@ const ServicesPage: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: idx * 0.1 }}
-                            className="bg-white p-6 rounded-2xl border border-border hover:border-foreground/20 transition-all duration-300 flex flex-col lg:flex-row gap-6 shadow-sm"
+                            className="bg-white p-6 rounded-2xl border border-border hover:border-foreground/20 transition-all duration-300 flex flex-col lg:flex-row gap-6 shadow-sm max-sm:flex-col max-sm:gap-4 max-sm:p-5"
                         >
                             <div className="w-14 h-14 bg-secondary rounded-xl flex items-center justify-center flex-shrink-0 text-foreground">
                                 <span className="material-icons-outlined text-2xl">{service.icon}</span>
@@ -100,10 +100,10 @@ const ServicesPage: React.FC = () => {
                         <FinancialPlanning />
                     </motion.div>
 
-                    <div className="bg-foreground text-background p-16 lg:p-20 rounded-2xl shadow-xl">
-                        <div className="max-w-xl mx-auto text-center mb-12">
+                    <div className="bg-foreground text-background p-16 lg:p-20 rounded-2xl shadow-xl max-md:p-12 max-sm:p-6">
+                        <div className="max-w-xl mx-auto text-center mb-12 max-sm:mb-8 max-sm:text-left">
                             <span className="text-muted-foreground font-bold text-[10px] uppercase tracking-[0.2em] mb-4 block">Institutional Insights</span>
-                            <h2 className="text-3xl font-bold mb-5 tracking-tight">Clarity for <span className="text-muted-foreground">serious applicants.</span></h2>
+                            <h2 className="text-3xl font-bold mb-5 tracking-tight max-sm:text-2xl max-sm:mb-3">Clarity for <span className="text-muted-foreground">serious applicants.</span></h2>
                             <p className="text-muted-foreground font-medium text-sm leading-relaxed">Rigorous transparency into the most complex dimensions of the international education journey.</p>
                         </div>
                         <div className="max-w-2xl mx-auto bg-white rounded-xl overflow-hidden text-foreground">

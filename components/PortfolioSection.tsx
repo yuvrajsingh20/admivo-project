@@ -34,13 +34,13 @@ const PortfolioSection: React.FC = () => {
     ];
 
     return (
-        <section className="py-20 bg-white border-b border-border">
+        <section className="py-20 bg-white border-b border-border max-md:py-16 max-sm:py-12">
             <div className="container-custom">
-                <div className="text-center mb-12">
+                <div className="text-center mb-12 max-sm:mb-8 max-sm:text-left">
                     <span className="text-[12px] font-semibold tracking-[0.15em] text-[#6B7280] uppercase mb-[16px] block">
                         Alumni Impact
                     </span>
-                    <h2 className="text-[40px] font-semibold text-[#111111] tracking-[-0.02em] leading-[1.2]">
+                    <h2 className="text-[40px] font-semibold text-[#111111] tracking-[-0.02em] leading-[1.2] max-sm:text-[32px] max-sm:leading-[1.1]">
                         Proven Results at Global Scale.
                     </h2>
                 </div>
@@ -89,8 +89,8 @@ const PortfolioSection: React.FC = () => {
                     ))}
                 </div>
 
-                <div className="mt-12 text-center">
-                    <button className="btn btn-outline h-10 px-6 text-[11px] font-bold uppercase tracking-widest flex items-center gap-2 mx-auto">
+                <div className="mt-12 text-center max-sm:mt-8">
+                    <button className="btn btn-outline h-10 px-6 text-[11px] font-bold uppercase tracking-widest flex items-center justify-center gap-2 mx-auto max-sm:w-full max-sm:h-12">
                         More Success Stories
                         <span className="material-icons-outlined text-sm">north_east</span>
                     </button>

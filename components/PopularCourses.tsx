@@ -30,14 +30,14 @@ const PopularCourses: React.FC = () => {
   };
 
   return (
-    <section className="py-20 bg-white border-b border-border">
+    <section className="py-20 bg-white border-b border-border max-md:py-16 max-sm:py-12">
       <div className="container-custom">
-        <div className="flex justify-between items-end mb-12">
+        <div className="flex justify-between items-end mb-12 max-sm:mb-8 max-sm:flex-col max-sm:items-start max-sm:gap-6">
           <div>
             <span className="text-[12px] font-semibold tracking-[0.15em] text-[#6B7280] uppercase mb-[16px] block">
               Curated Programs
             </span>
-            <h2 className="text-[40px] font-semibold text-[#111111] tracking-[-0.02em] leading-[1.2]">
+            <h2 className="text-[40px] font-semibold text-[#111111] tracking-[-0.02em] leading-[1.2] max-sm:text-[32px]">
               Popular Career Paths.
             </h2>
           </div>

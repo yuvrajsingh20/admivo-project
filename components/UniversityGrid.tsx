@@ -15,14 +15,14 @@ const UniversityGrid: React.FC<UniversityGridProps> = ({ onNavigate }) => {
   ];
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-white max-md:py-16 max-sm:py-12">
       <div className="container-custom">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6 max-sm:mb-8">
           <div className="max-w-xl">
             <span className="text-[12px] font-semibold tracking-[0.15em] text-[#6B7280] uppercase mb-[16px] block">
               Global Network
             </span>
-            <h2 className="text-[40px] font-semibold text-[#111111] tracking-[-0.02em] leading-[1.2] mb-[20px]">
+            <h2 className="text-[40px] font-semibold text-[#111111] tracking-[-0.02em] leading-[1.2] mb-[20px] max-sm:text-[32px]">
               Elite university hubs.
             </h2>
             <p className="text-[14px] text-[#4B5563] leading-[1.6]">
@@ -61,7 +61,7 @@ const UniversityGrid: React.FC<UniversityGridProps> = ({ onNavigate }) => {
               <div className="absolute inset-0 p-6 flex flex-col justify-end">
                 <div className="flex justify-between items-end">
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-2 tracking-tight">{dest.name}</h3>
+                    <h3 className="text-2xl font-bold text-white mb-2 tracking-tight max-sm:text-[20px]">{dest.name}</h3>
                     <p className="text-white/70 text-xs font-medium uppercase tracking-widest">{dest.schools}</p>
                   </div>
                   {!dest.active ? (

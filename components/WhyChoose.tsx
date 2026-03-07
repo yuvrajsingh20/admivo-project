@@ -26,13 +26,13 @@ const WhyChoose: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 bg-[#FAFAFA] border-b border-border">
+    <section className="py-20 bg-[#FAFAFA] border-b border-border max-md:py-16 max-sm:py-12">
       <div className="container-custom">
-        <div className="text-center mb-12 max-w-2xl mx-auto">
+        <div className="text-center mb-12 max-w-2xl mx-auto max-sm:mb-8 max-sm:text-left">
           <span className="text-[12px] font-semibold tracking-[0.15em] text-[#6B7280] uppercase mb-[16px] block">
             The Admivo Standard
           </span>
-          <h2 className="text-[40px] font-semibold text-[#111111] tracking-[-0.02em] leading-[1.2]">
+          <h2 className="text-[40px] font-semibold text-[#111111] tracking-[-0.02em] leading-[1.2] max-sm:text-[32px] max-sm:leading-[1.1]">
             Why elite students choose our platform.
           </h2>
         </div>

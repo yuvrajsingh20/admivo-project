@@ -22,7 +22,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         {/* Top Minimal CTA */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-white/[0.06] pb-[32px] mb-[32px] gap-[24px]">
           <div>
-            <h2 className="text-3xl md:text-4xl font-semibold text-[#E5E5E5] tracking-tight mb-[16px]">
+            <h2 className="text-3xl md:text-4xl font-semibold text-[#E5E5E5] tracking-tight mb-[16px] max-sm:text-2xl">
               Shape your academic future.
             </h2>
             <p className="text-[14px] font-normal leading-[1.6] text-[#9CA3AF] max-w-[400px]">
@@ -45,7 +45,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         </div>
 
         {/* 4-Column Grid Structure */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-[24px] gap-x-[40px] w-full min-h-[200px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-[32px] gap-x-[40px] w-full min-h-[200px]">
 
           {/* Column 1: Brand */}
           <div className="flex flex-col gap-[12px]">
