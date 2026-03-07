@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Page } from '../types';
-import TextType from './animations/TextType';
 
 interface HeroProps {
   onNavigate: (page: Page) => void;
@@ -18,37 +17,23 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
         {/* LEFT SIDE */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="relative z-10"
         >
-          <div className="inline-flex items-center gap-2 py-1.5 px-3 rounded-full bg-white border border-border mb-8 shadow-sm">
-            <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-[12px] font-semibold text-[#6B7280] tracking-[0.15em] uppercase">
+          <div className="inline-flex items-center gap-2 py-1.5 px-3 rounded-full bg-white border border-border mb-3 shadow-sm">
+            <span className="flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+            <span className="text-[12px] font-medium text-[#6B7280] tracking-wide uppercase">
               Admissions 2026/27 Now Open
             </span>
           </div>
 
-          <h1 className="text-[40px] md:text-[56px] lg:text-[72px] font-semibold text-[#111111] leading-[1.1] mb-6 tracking-[-0.02em]">
-            Elevate your <br />
-            <span className="text-[#3ca2fa]">
-              <TextType
-                text={[
-                  "Global Future",
-                  "Academic Rank",
-                  "Career Path",
-                ]}
-                typingSpeed={70}
-                pauseDuration={2000}
-                showCursor
-                cursorCharacter="|"
-                deletingSpeed={40}
-              />
-            </span>
+          <h1 className="text-[40px] md:text-[56px] lg:text-[68px] font-semibold text-[#111111] leading-[1.05] tracking-tight mb-4 max-w-[12em]">
+            Elevate your global future.
           </h1>
 
-          <p className="text-[16px] text-[#4B5563] mb-8 max-w-lg leading-[1.6]">
+          <p className="text-[17px] text-[#4B5563] mb-6 max-w-md leading-relaxed">
             Strategic application support for students targeting elite universities globally.
             From Oxford to MIT, we guide your journey to excellence.
           </p>
@@ -94,20 +79,31 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="relative flex justify-center lg:justify-end"
         >
-          <div className="relative w-full aspect-square max-w-[500px] flex items-center justify-center">
+          <div className="relative w-full aspect-square max-w-[500px] min-h-[400px] flex items-center justify-center">
 
-            {/* Minimalist Abstract Anchor */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-64 h-64 bg-primary/10 rounded-full blur-3xl" />
-              <div className="absolute w-80 h-80 border border-primary/10 rounded-full animate-[spin_20s_linear_infinite]" />
-              <div className="absolute w-[400px] h-[400px] border border-primary/[0.05] rounded-full animate-[spin_30s_linear_infinite_reverse]" />
+            {/* Doodle Animation Main Visual */}
+            <div className="absolute inset-0 flex items-center justify-center z-0">
+              <div className="absolute w-72 h-72 bg-primary/20 rounded-full blur-3xl -z-10" />
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-[120%] h-[120%] max-w-none object-contain mix-blend-multiply opacity-90 grayscale contrast-125 brightness-110 pointer-events-none"
+                style={{
+                  maskImage: 'radial-gradient(circle at center, black 50%, transparent 80%)',
+                  WebkitMaskImage: 'radial-gradient(circle at center, black 50%, transparent 80%)'
+                }}
+              >
+                <source src="/videos/hero-doodle.mp4" type="video/mp4" />
+              </video>
             </div>
 
             {/* Refined Premium Cards */}
             <motion.div
               animate={{ y: [0, -15, 0] }}
               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/4 -right-4 card-minimal !p-5 flex items-center gap-4 backdrop-blur-md bg-white/90 z-20 shadow-xl border-primary/10"
+              className="absolute -top-4 right-8 card-minimal !p-5 flex items-center gap-4 backdrop-blur-md bg-white/90 z-20 shadow-xl border-primary/10"
             >
               <div className="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600">
                 <span className="material-icons-outlined text-lg">verified</span>
@@ -121,7 +117,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
             <motion.div
               animate={{ y: [0, 15, 0] }}
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute bottom-1/4 -left-4 card-minimal !p-5 flex items-center gap-4 backdrop-blur-md bg-white/90 z-20 shadow-xl border-primary/10"
+              className="absolute -bottom-8 left-8 card-minimal !p-5 flex items-center gap-4 backdrop-blur-md bg-white/90 z-20 shadow-xl border-primary/10"
             >
               <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
                 <span className="material-icons-outlined text-lg">stars</span>
@@ -132,10 +128,7 @@ const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
               </div>
             </motion.div>
 
-            {/* Subtle Center Element */}
-            <div className="w-24 h-24 rounded-3xl bg-white border border-border shadow-inner flex items-center justify-center z-10 transition-colors hover:border-primary/30">
-              <span className="material-icons-outlined text-3xl text-primary opacity-40">language</span>
-            </div>
+            {/* Central elements were removed to let the doodle video shine */}
 
           </div>
         </motion.div>

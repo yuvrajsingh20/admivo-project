@@ -1,53 +1,136 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admivo | Your Path to Global Education</title>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary: "#fdb417",
-              "background-light": "#f8f7f5",
-              "background-dark": "#231d0f",
-            },
-            fontFamily: {
-              sans: ["Inter", "sans-serif"],
-            },
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admivo | Your Path to Global Education</title>
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet" />
+
+  <!-- Tailwind Configuration (Must be BEFORE the script) -->
+  <script>
+    window.tailwindConfig = {
+      theme: {
+        extend: {
+          colors: {
+            background: "#FFFFFF",
+            foreground: "#09090B",
+            muted: "#71717A",
+            "muted-foreground": "#A1A1AA",
+            border: "#E4E4E7",
+            input: "#E4E4E7",
+            primary: "#fdb417",
+            secondary: "#F4F4F5",
+            accent: "#F4F4F5",
           },
+          fontFamily: {
+            sans: ["Inter", "sans-serif"],
+            display: ["Plus Jakarta Sans", "sans-serif"],
+          }
         },
-      };
-    </script>
-    <style>
-      body {
-        font-family: 'Inter', sans-serif;
-        scroll-behavior: smooth;
-      }
-      .doodle-underline {
-        background-image: url("data:image/svg+xml,%3Csvg width='100' height='10' viewBox='0 0 100 10' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 8C20 4 80 4 98 8' stroke='%23fdb417' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
-        background-repeat: no-repeat;
-        background-position: bottom;
-        background-size: 100% 12px;
-        padding-bottom: 8px;
-      }
-      .hide-scrollbar::-webkit-scrollbar {
-        display: none;
-      }
-      .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
-    </style>
-    <script type="module" crossorigin src="/assets/index-BlUghT6J.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BMKuTusB.css">
-  </head>
-  <body class="bg-background-light text-slate-800">
-    <div id="root"></div>
+      },
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio"></script>
+  <script>
+    tailwind.config = window.tailwindConfig;
+  </script>
+
+  <style>
+    /* Ensure variables are available to both Tailwind and standard CSS */
+    :root {
+      --background: #FFFFFF;
+      --foreground: #09090B;
+      --muted: #71717A;
+      --muted-foreground: #A1A1AA;
+      --border: #E4E4E7;
+      --primary: #fdb417;
+      --secondary: #F4F4F5;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--background);
+      color: var(--foreground);
+      margin: 0;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Critical Utilities in case Tailwind takes a moment to load */
+    .container-custom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 0.5rem 1.25rem;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      height: 2.5rem;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #09090B;
+      font-weight: 700;
+    }
+
+    .btn-primary:hover {
+      background: #e5a315;
+    }
+
+    .btn-secondary {
+      background: var(--secondary);
+      color: var(--foreground);
+    }
+
+    .btn-outline {
+      border: 1px solid var(--border);
+      background: transparent;
+    }
+
+    .text-gradient {
+      background: linear-gradient(to bottom right, #09090B, #71717A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Fix for material icons not showing */
+    .material-icons-outlined {
+      font-family: 'Material Icons Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: normal;
+      text-transform: none;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-D1So1iWR.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Dp-q35qk.css">
+</head>
+
+<body class="bg-white text-[#09090B]">
+  <div id="root"></div>
 </body>
+
 </html>
